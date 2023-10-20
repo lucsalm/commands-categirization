@@ -55,7 +55,7 @@ def generate_report():
     test_predictions = np.argmax(model.predict(test_input), axis=1)
     general_predictions = np.argmax(model.predict(general_input), axis=1)
 
-    train_precision = np.array(confusion_matrix(np.argmax(train_output, axis=1), train_predictions))
+    train_confusion = np.array(confusion_matrix(np.argmax(train_output, axis=1), train_predictions))
     validation_confusion = np.array(confusion_matrix(np.argmax(validation_output, axis=1), validation_predictions))
     test_confusion = np.array(confusion_matrix(np.argmax(test_output, axis=1), test_predictions))
     general_confusion = np.array(confusion_matrix(np.argmax(general_output, axis=1), general_predictions))
@@ -68,7 +68,7 @@ def generate_report():
     with open(os.path.join(report_path, "report.csv"), 'w') as file:
         file.write(report)
 
-    print_confusion(tittle="Treinamento", confusion=train_precision)
+    print_confusion(tittle="Treinamento", confusion=train_confusion)
     print_confusion(tittle="Validação", confusion=validation_confusion)
     print_confusion(tittle="Teste", confusion=test_confusion)
     print_confusion(tittle="Geral", confusion=general_confusion)

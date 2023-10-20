@@ -74,7 +74,4 @@ def train_model():
     plt.savefig(f'files/report/validation_accuracy.png', format='png', bbox_inches='tight', pad_inches=0)
     plt.clf()
 
-    print("Finalizado")
-
-
 train_model()
