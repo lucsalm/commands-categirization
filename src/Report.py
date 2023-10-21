@@ -27,8 +27,6 @@ def generate_report():
     validation_input, validation_output = load_data.get_data_validation(len_validation).as_numpy_iterator().next()
     test_input, test_output = load_data.get_data_test(len_test).as_numpy_iterator().next()
 
-    general_input = np.concatenate((train_input, validation_input, test_input))
-    general_output = np.concatenate((train_output, validation_output, test_output))
 
     model = EncoderOnlyModel(
         num_heads=num_heads,
@@ -48,17 +46,14 @@ def generate_report():
     train_precision = model.evaluate(x=train_input, y=train_output)[1]
     validation_precision = model.evaluate(x=validation_input, y=validation_output)[1]
     test_precision = model.evaluate(x=test_input, y=test_output)[1]
-    general_precision = model.evaluate(x=general_input, y=general_output)[1]
 
     train_predictions = np.argmax(model.predict(train_input), axis=1)
     validation_predictions = np.argmax(model.predict(validation_input), axis=1)
     test_predictions = np.argmax(model.predict(test_input), axis=1)
-    general_predictions = np.argmax(model.predict(general_input), axis=1)
 
     train_confusion = np.array(confusion_matrix(np.argmax(train_output, axis=1), train_predictions))
     validation_confusion = np.array(confusion_matrix(np.argmax(validation_output, axis=1), validation_predictions))
     test_confusion = np.array(confusion_matrix(np.argmax(test_output, axis=1), test_predictions))
-    general_confusion = np.array(confusion_matrix(np.argmax(general_output, axis=1), general_predictions))
 
     fig = plt.figure()
     report_path = "files/report"
@@ -71,7 +66,6 @@ def generate_report():
     print_confusion(tittle="Treinamento", confusion=train_confusion)
     print_confusion(tittle="Validação", confusion=validation_confusion)
     print_confusion(tittle="Teste", confusion=test_confusion)
-    print_confusion(tittle="Geral", confusion=general_confusion)
 
 
 def print_confusion(tittle, confusion):
