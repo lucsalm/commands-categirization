@@ -1,13 +1,12 @@
 import os
-import tensorflow as tf
-from keras.callbacks import ModelCheckpoint
 from LoadData import LoadData
-from DisplayOutputs import DisplayOutputs
-from EncoderOnlyModel import EncoderOnlyModel
 import matplotlib.pyplot as plt
-from keras.losses import CategoricalCrossentropy
-from keras.metrics import CategoricalAccuracy
 from keras.optimizers import Adam
+from DisplayOutputs import DisplayOutputs
+from keras.callbacks import ModelCheckpoint
+from EncoderOnlyModel import EncoderOnlyModel
+from keras.metrics import CategoricalAccuracy
+from keras.losses import CategoricalCrossentropy
 
 batch_size, test_batch_size = 32, 4
 epochs, num_heads, d_model, dff, dropout_rate = 400, 2, 128, 512, 0.1

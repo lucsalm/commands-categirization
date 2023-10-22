@@ -20,7 +20,8 @@ class LoadData():
         return {0: 'down', 1: 'go', 2: 'left', 3: 'no', 4: 'right', 5: 'stop', 6: 'up', 7: 'yes'}
 
     def download_data(self, base_data_path):
-        origin = "http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip"
+        origin = "http://storage.googleapis.com/download.tensorflow.org/" \
+                 "data/mini_speech_commands.zip"
         tf.keras.utils.get_file('mini_speech_commands.zip', origin=origin, extract=True, cache_dir='.',
                                 cache_subdir=base_data_path)
 

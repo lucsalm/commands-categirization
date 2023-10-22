@@ -1,13 +1,13 @@
 import os
 import numpy as np
-from keras.losses import CategoricalCrossentropy
-from keras.metrics import CategoricalAccuracy
-from keras.optimizers import Adam
-from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 from LoadData import LoadData
+from keras.optimizers import Adam
+from sklearn.metrics import confusion_matrix
 from EncoderOnlyModel import EncoderOnlyModel
+from keras.metrics import CategoricalAccuracy
+from keras.losses import CategoricalCrossentropy
 
 len_train, len_validation, len_test = 6400, 800, 800
 num_heads, d_model, dff, dropout_rate = 2, 128, 512, 0.1
@@ -46,7 +46,10 @@ class Report():
         fig = plt.figure()
         report_path = "files/report"
         os.makedirs(report_path, exist_ok=True)
-        report = f';Treinamento;Validação;Teste;Geral\nPrecisão;{np.mean(train_precision):.4f};{np.mean(validation_precision):.4f};{np.mean(test_precision):.4f}'
+        report = f';Treinamento;Validação;Teste;Geral\nPrecisão;' \
+                 f'{np.mean(train_precision):.4f};' \
+                 f'{np.mean(validation_precision):.4f};' \
+                 f'{np.mean(test_precision):.4f}'
         with open(os.path.join(report_path, "report.csv"), 'w') as file:
             file.write(report)
 
