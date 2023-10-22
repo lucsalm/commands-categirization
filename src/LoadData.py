@@ -9,34 +9,26 @@ AUTOTUNE = tf.data.AUTOTUNE
 class LoadData():
     def __init__(self):
         self.commands = self.get_commands()
-
         base_data_path = 'files/data'
         data_path = f'{base_data_path}/mini_speech_commands'
         self.data_dir = pathlib.Path(data_path)
         if not self.data_dir.exists():
             self.download_data(base_data_path)
-
         self.train_files, self.validation_files, self.test_files = self.randomize_data()
 
     def get_commands(self):
         return {0: 'down', 1: 'go', 2: 'left', 3: 'no', 4: 'right', 5: 'stop', 6: 'up', 7: 'yes'}
 
     def download_data(self, base_data_path):
-        tf.keras.utils.get_file(
-            'mini_speech_commands.zip',
-            origin=
-            "http://storage.googleapis.com/download.tensorflow.org/data/"
-            + "mini_speech_commands.zip",
-            extract=True,
-            cache_dir='.', cache_subdir=base_data_path)
+        origin = "http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip"
+        tf.keras.utils.get_file('mini_speech_commands.zip', origin=origin, extract=True, cache_dir='.',
+                                cache_subdir=base_data_path)
 
     def randomize_data(self):
         file_names = sorted(tf.io.gfile.glob(str(self.data_dir) + '/*/*'))
         quantity_for_commands = 1000
-
         train_files, validation_files, test_files = [], [], []
         files = [train_files, validation_files, test_files]
-
         for i in range(0, len(file_names), quantity_for_commands):
             np.random.seed(1)
             files_command = file_names[i:i + quantity_for_commands]
@@ -44,11 +36,9 @@ class LoadData():
             train_files += files_command[:800]
             validation_files += files_command[800:900]
             test_files += files_command[900:]
-
         for file_set in files:
             np.random.seed(1)
             np.random.shuffle(file_set)
-
         return files
 
     def get_label_by_command(self, parts):
@@ -57,29 +47,26 @@ class LoadData():
         len_commands = tf.shape(commands_values)[0]
         return tf.one_hot(index, len_commands, dtype=tf.float32)
 
-    def get_command_by_label(self, one_hot):
+    def get_command_by_label(self,one_hot):
         one_hot_np = one_hot.numpy()
         index = np.argmax(one_hot_np)
         return tf.convert_to_tensor(self.get_commands()[index])
 
     def get_label(self, file_path):
-        parts = tf.strings.split(
-            input=file_path,
-            sep=os.path.sep)
+        parts = tf.strings.split(input=file_path, sep=os.path.sep)
         return self.get_label_by_command(parts[-2])
 
     def decode_audio(self, audio_binary):
         audio, _ = tf.audio.decode_wav(contents=audio_binary)
         return tf.squeeze(audio, axis=-1)
 
-    def get_stft(self, waveform):
+    def get_spectrogram(self, waveform):
         input_len = 16000
         waveform = waveform[:input_len]
         zero_padding = tf.zeros([16000] - tf.shape(waveform), dtype=tf.float32)
         waveform = tf.cast(waveform, dtype=tf.float32)
         equal_length = tf.concat([waveform, zero_padding], 0)
-        spectrogram = tf.signal.stft(
-            equal_length, frame_length=255, frame_step=128)
+        spectrogram = tf.signal.stft(equal_length, frame_length=255, frame_step=128)
         spectrogram = tf.abs(spectrogram)
         return spectrogram
 

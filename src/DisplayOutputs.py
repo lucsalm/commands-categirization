@@ -2,7 +2,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-
 class DisplayOutputs(keras.callbacks.Callback):
     def __init__(self, batch, commands):
         self.batch = batch
