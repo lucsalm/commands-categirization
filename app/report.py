@@ -1,13 +1,11 @@
 import os
+
+import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-import matplotlib.pyplot as plt
-from LoadData import LoadData
-from keras.optimizers import Adam
 from sklearn.metrics import confusion_matrix
-from EncoderOnlyModel import EncoderOnlyModel
-from keras.metrics import CategoricalAccuracy
-from keras.losses import CategoricalCrossentropy
+
+from load import LoadData
 
 len_train, len_validation, len_test = 6400, 800, 800
 num_heads, d_model, dff, dropout_rate = 2, 128, 512, 0.1
@@ -22,14 +20,7 @@ class Report():
             len_validation).as_numpy_iterator().next()
         test_input, test_output = self.load_data.get_data_test(len_test).as_numpy_iterator().next()
 
-        model = EncoderOnlyModel(num_heads=num_heads, d_model=d_model, dff=dff,
-                                 target_vocab_size=len(self.load_data.get_commands()), rate=dropout_rate)
-
-        model_path = "files/checkpoints"
-        model_weights_file = os.listdir(model_path)[0]
-        model.build((None, None, 129))
-        model.load_weights(os.path.join(model_path, model_weights_file))
-        model.compile(optimizer=Adam(), loss=CategoricalCrossentropy(), metrics=[CategoricalAccuracy()])
+        model = self.load_data.load_weights_predict("files/checkpoints")
 
         train_precision = model.evaluate(x=train_input, y=train_output)[1]
         validation_precision = model.evaluate(x=validation_input, y=validation_output)[1]
@@ -43,7 +34,6 @@ class Report():
         validation_confusion = np.array(confusion_matrix(np.argmax(validation_output, axis=1), validation_predictions))
         test_confusion = np.array(confusion_matrix(np.argmax(test_output, axis=1), test_predictions))
 
-        fig = plt.figure()
         report_path = "files/report"
         os.makedirs(report_path, exist_ok=True)
         report = f';Treinamento;Validação;Teste;Geral\nPrecisão;' \

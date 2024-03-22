@@ -7,7 +7,7 @@ class EncoderOnlyModel(tf.keras.Model):
         self.d_model = d_model
         self.enc_layers = tf.keras.Sequential([layers.Dense(d_model, activation='relu')])
         self.mha = layers.MultiHeadAttention(num_heads=num_heads, key_dim=d_model)
-        self.ffn = tf.keras.Sequential([ layers.Dense(dff), layers.Dense(d_model, activation='relu') ])
+        self.ffn = tf.keras.Sequential([layers.Dense(dff), layers.Dense(d_model, activation='relu')])
         self.layer_norm1 = layers.LayerNormalization(epsilon=1e-6)
         self.layer_norm2 = layers.LayerNormalization(epsilon=1e-6)
         self.dropout1 = layers.Dropout(rate=rate)

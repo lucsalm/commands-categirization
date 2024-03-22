@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commands Categorization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<h1 class="text-center display-3 mb-2 mt-2">Commands Categorization</h1>
+<hr>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-12">
+            <p class="text-center display-3 mb-1" style="font-size:28px">This application understand the following commands</p>
+            <p class="text-center display-3 mb-5" style="font-size:24px">down, go, left, no, right, stop, up and yes</p>
+            <div class="col-sm-12 text-center mb-3">
+                <button id="recordButton" style="border: none;background: none;cursor: pointer;padding: 0;">
+                    <img src="{{url_for('static', filename='img.png')}}" style="width: 30%;display: inline-block;"
+                         alt="Imagem"
+                         class="centered-image mx-auto">
+                </button>
+            </div>
+            <p id="statusText" class="text-center mb-2 display-3" style="font-size:24px">&nbsp</p>
+            <h4 class="text-center display-3 mb-3" style="font-size:28px">Click the record button and speak out any of them</h4>
+            <p id="responseStatus" class="text-center display-3 mb-3" style="font-size:28px">&nbsp</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script>
+    navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(function(stream) {
+    var audioContext = new AudioContext();
+    var audioInput = audioContext.createMediaStreamSource(stream);
+    var recorder = new Recorder(audioInput);
+    var recordButton = document.getElementById('recordButton');
+    var statusText = document.getElementById('statusText');
+    var responseStatus = document.getElementById('responseStatus');
+
+    recordButton.addEventListener('click', async function() {
+        recorder.clear();
+        recorder.record();
+        recordButton.disabled = true;
+        statusText.innerText = 'Recording...';
+        await new Promise(resolve => {
+            setTimeout(function() {
+                recorder.stop();
+                recordButton.disabled = false;
+                statusText.innerText = 'Stopped recording';
+                resolve();
+            }, 1000);
+        });
+        recorder.exportWAV(function(blob) {
+            var formData = new FormData();
+            formData.append('audio', blob, 'recording.wav');
+            fetch('/command', {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                return response.text();
+            }).then(function(responseText) {
+                responseStatus.innerText = responseText;
+            }).catch(function(error) {
+                console.error('Error:', error);
+                responseStatus.innerText = 'An error occurred';
+            });
+        });
+    });
+    })
+    .catch(function(err) {
+    console.error('Error accessing microphone:', err);
+    });
+</script>
+</body>
+</html>

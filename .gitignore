@@ -1,0 +1,4 @@
+# Arquivos e diretórios específicos a serem ignorados
+.idea/
+__pycache__/
+**/__pycache__/

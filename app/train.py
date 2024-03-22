@@ -1,12 +1,13 @@
 import os
-from LoadData import LoadData
+from load import LoadData
 import matplotlib.pyplot as plt
-from keras.optimizers import Adam
-from DisplayOutputs import DisplayOutputs
+from display import DisplayOutputs
 from keras.callbacks import ModelCheckpoint
-from EncoderOnlyModel import EncoderOnlyModel
+from model import EncoderOnlyModel
 from keras.metrics import CategoricalAccuracy
 from keras.losses import CategoricalCrossentropy
+from keras.optimizers import Adam
+
 
 batch_size, test_batch_size = 32, 4
 epochs, num_heads, d_model, dff, dropout_rate = 400, 2, 128, 512, 0.1
@@ -14,6 +15,7 @@ epochs, num_heads, d_model, dff, dropout_rate = 400, 2, 128, 512, 0.1
 class Train():
     def __init__(self):
         self.load_data = LoadData()
+        self.load_data.get_data()
 
     def train_model(self):
         train = self.load_data.get_data_train(batch_size=batch_size)
@@ -33,7 +35,6 @@ class Train():
             model.load_weights(os.path.join(checkpoint_path, checkpoint))
 
         model.compile(optimizer=Adam(), loss=CategoricalCrossentropy(), metrics=[CategoricalAccuracy()])
-
         display_cb = DisplayOutputs(batch=batch_test, commands=self.load_data.get_commands())
         ckpt_cb = ModelCheckpoint(filepath=f'{checkpoint_path}/model.h5', save_best_only=True, save_weights_only=True, monitor='val_categorical_accuracy', mode='max', save_freq='epoch')
 

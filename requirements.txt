@@ -1,0 +1,15 @@
+keras==2.11.0
+matplotlib==3.5.3
+numpy==1.21.6
+seaborn==0.12.2
+tensorboard==2.11.2
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow==2.11.0
+tensorflow-estimator==2.11.0
+tensorflow-io-gcs-filesystem==0.31.0
+transformers==4.30.2
+Flask==2.2.5
+Flask-Cors==4.0.0
+Flask-RESTful==0.3.10
+librosa==0.10.1
