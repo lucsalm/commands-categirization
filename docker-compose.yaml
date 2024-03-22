@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  portfolio:
+  commands:
     image: lucasalmdsilva/commands-categorization:latest
     pull_policy: always
     ports:
