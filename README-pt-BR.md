@@ -6,7 +6,7 @@ está disponível em [Português](https://github.com/lucsalm/commands-categiriza
 ## Visão Geral
 
 Este projeto é base do meu
-[Trabalho de Conclusão de Curso](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/TCC.pdf)
+[Trabalho de Conclusão de Curso](https://github.com/lucsalm/commands-categirization/blob/main/TCC.pdf)
 da minha graduação [Bacharelado em Matemática Aplicada e Computacional](https://www.ime.usp.br/bmac/)
 no [Instituto de Matemática e Estatística](https://www.ime.usp.br) da [USP](https://www5.usp.br).
 O trabalho é focado no estudo da arquitetura Transformer e sua aplicação na categorização de comandos de fala

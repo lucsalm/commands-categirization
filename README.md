@@ -4,7 +4,7 @@ This document is available in [Portuguese](https://github.com/lucsalm/commands-c
 
 ## Overview
 
-This project is the foundation of my [Bachelor's Thesis](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/TCC.pdf) for my undergraduate degree in [Applied and Computational Mathematics](https://www.ime.usp.br/bmac/) at the [Institute of Mathematics and Statistics](https://www.ime.usp.br) of [USP](https://www5.usp.br).
+This project is the foundation of my [Bachelor's Thesis](https://github.com/lucsalm/commands-categirization/blob/main/TCC.pdf) for my undergraduate degree in [Applied and Computational Mathematics](https://www.ime.usp.br/bmac/) at the [Instituto de Matemática e Estatística](https://www.ime.usp.br) of [USP](https://www5.usp.br).
 The work focuses on studying the Transformer architecture and its application in speech command categorization, which involves identifying and classifying different types of instructions or requests issued through human speech. The repository contains the implementations used, from data preprocessing, model creation, to training definitions, and generation of graphs for result evaluation.
 
 ## Technologies
