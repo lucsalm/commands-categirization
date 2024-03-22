@@ -3,6 +3,6 @@ version: "3.7"
 services:
   portfolio:
     image: lucasalmdsilva/commands-categorization:latest
-#    pull_policy: always
+    pull_policy: always
     ports:
       - "5000:5000"
