@@ -1,7 +1,7 @@
 # Commands Categorization
 
-Este documento está disponível em [Inglês](https://github.com/lucsalm/account-api/blob/main/README.md), porém também
-está disponível em [Português](https://github.com/lucsalm/account-api/blob/main/README-pt-BR.md).
+Este documento está disponível em [Inglês](https://github.com/lucsalm/commands-categirization/blob/main/README.md), porém também
+está disponível em [Português](https://github.com/lucsalm/commands-categirization/blob/main/README-pt-BR.md).
 
 ## Visão Geral
 
@@ -30,16 +30,16 @@ Por conta da natureza do problema estudado, os dados seguem o padrão de pares d
 
 - ### Áudios
   Os áudios seguem a representação unidimensional em formato de onda extraídos de arquivos WAV:
-  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/wav_all.png)
+  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/wav_all.png)
   Porém na fase de pré-processamento eles são convertidos para o formato bidimensional de espectrograma STFT (Short-time
   Fourier transform):
-  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/spec_all.png)
+  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/spec_all.png)
 
 - ### Rótulos
   São a representação numérica para os comandos, os indicies definidos são os seguintes:
 
   | **Indice** | 1    | 2  | 3    | 4  | 5     | 6    | 7  | 8   |
-      |------------|------|----|------|----|-------|------|----|-----|
+  |------------|------|----|------|----|-------|------|----|-----|
   | **Texto**  | Down | Go | Left | No | Right | Stop | Up | Yes |
 
   A partir dos indices definidos, os comandos são identificados por um vetor cuja os valores somam um, ao representar
@@ -47,14 +47,14 @@ Por conta da natureza do problema estudado, os dados seguem o padrão de pares d
   por:
 
   | **Indice** | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-      |------------|---|---|---|---|---|---|---|---|
+  |------------|---|---|---|---|---|---|---|---|
   | **Vetor**  | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
 
 Os pares são divididos com as mesmas proporções para cada comando em três conjuntos:
 
 - ### Conjuntos
   | **Nome**    | Treinamento | Validação  | Teste     |
-      |-------------|-------------|------------|-----------|
+  |-------------|-------------|------------|-----------|
   | **Tamanho** | 6400 (80%)  | 800 (10%)  | 800 (10%) |
 
 ## Modelo
@@ -62,7 +62,7 @@ Os pares são divididos com as mesmas proporções para cada comando em três co
 - ### Arquitetura
   A arquitetura do modelo utilizada foi baseada na arquitetura Transformer, em especial no conceito do Encoder
   e no uso do mecanismo de Self-Attention, a representação em forma de fluxograma pode ser visualizada pelo desenho:
-  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/model-diagram.png)
+  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/model-diagram.jpg)
 
   Cada camada presente na arquitetura tem um papel específico para o modelo, esses estão devidamente documentados no
   trabalho, para aprofundar os
@@ -98,18 +98,21 @@ Os pares são divididos com as mesmas proporções para cada comando em três co
   | **Precisão** | 99.08%      | 85.25%    | 85.87% | 
 
 - ### Comportamento
-  - **Função de Perda** (Treinamento)
-  ![Perda](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/train_loss.png)
+  - **Função de Perda** (Treinamento) 
+  
+      ![Perda](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/train_loss.png)
 
   - **Função de Precisão** (Validação)
-  ![Precisao](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/validation_acurracy.png)
+  
+      ![Precisao](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/validation_accuracy.png)
   
   - **Matriz de confusão** (Teste)
-  ![Confusao](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/files/documentation/confusion-teste.png)
+  
+      ![Confusao](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/confusion-teste.png)
 
 ## Captura de Tela de Exemplo
 
-![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/screenshot.png)
 
 ## Como usar?
 1. Certifique-se de que o Docker esteja instalado em sua máquina.
