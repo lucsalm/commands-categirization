@@ -1,7 +1,7 @@
 # Commands Categorization
 
-Este documento está disponível em [Inglês](https://github.com/lucsalm/commands-categirization/blob/main/README.md), porém também
-está disponível em [Português](https://github.com/lucsalm/commands-categirization/blob/main/README-pt-BR.md).
+Este documento está disponível em [Português](https://github.com/lucsalm/commands-categirization/blob/main/README-pt-BR.md), porém também
+está disponível em [Inglês](https://github.com/lucsalm/commands-categirization/blob/main/README.md).
 
 ## Visão Geral
 
