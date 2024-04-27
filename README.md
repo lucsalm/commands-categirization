@@ -1,10 +1,10 @@
 # Commands Categorization
 
-This document is available in [English](https://github.com/lucsalm/commands-categirization/blob/main/README.md), but it's also available in [Portuguese](https://github.com/lucsalm/commands-categirization/blob/main/README-pt-BR.md).
+This document is available in [English](https://github.com/lucsalm/commands-categorization/blob/main/README.md), but it's also available in [Portuguese](https://github.com/lucsalm/commands-categorization/blob/main/README-pt-BR.md).
 
 ## Overview
 
-This project is the foundation of my [Bachelor's Thesis](https://github.com/lucsalm/commands-categirization/blob/main/TCC.pdf) for my undergraduate degree in [Applied and Computational Mathematics](https://www.ime.usp.br/bmac/) at the [Instituto de Matemática e Estatística](https://www.ime.usp.br) of [USP](https://www5.usp.br).
+This project is the foundation of my [Bachelor's Thesis](https://github.com/lucsalm/commands-categorization/blob/main/TCC.pdf) for my undergraduate degree in [Applied and Computational Mathematics](https://www.ime.usp.br/bmac/) at the [Instituto de Matemática e Estatística](https://www.ime.usp.br) of [USP](https://www5.usp.br).
 The work focuses on studying the Transformer architecture and its application in speech command categorization, which involves identifying and classifying different types of instructions or requests issued through human speech. The repository contains the implementations used, from data preprocessing, model creation, to training definitions, and generation of graphs for result evaluation.
 
 ## Technologies
@@ -22,9 +22,9 @@ Due to the nature of the problem studied, the data follows the pattern of pairs:
 
 - ### Audios
   Audios follow the one-dimensional representation in WAV file format:
-  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/wav_all.png)
+  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/wav_all.png)
   However, in the preprocessing phase, they are converted to the two-dimensional format of Short-time Fourier transform (STFT) spectrogram:
-  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/spec_all.png)
+  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/spec_all.png)
 
 - ### Labels
   They are the numerical representation for the commands, the defined indices are as follows:
@@ -82,19 +82,19 @@ The pairs are divided with the same proportions for each command into three sets
 - ### Behavior
   - **Loss Function** (Training) 
   
-      ![Loss](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/train_loss.png)
+      ![Loss](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/train_loss.png)
 
   - **Accuracy Function** (Validation)
   
-      ![Accuracy](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/validation_accuracy.png)
+      ![Accuracy](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/validation_accuracy.png)
   
   - **Confusion Matrix** (Test)
   
-      ![Confusion](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/confusion-teste.png)
+      ![Confusion](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/confusion-teste.png)
 
 ## Example Screenshot
 
-![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/screenshot.png)
 
 ## How to Use?
 1. Ensure Docker is installed on your machine.

@@ -1,12 +1,12 @@
 # Commands Categorization
 
-Este documento está disponível em [Português](https://github.com/lucsalm/commands-categirization/blob/main/README-pt-BR.md), porém também
-está disponível em [Inglês](https://github.com/lucsalm/commands-categirization/blob/main/README.md).
+Este documento está disponível em [Português](https://github.com/lucsalm/commands-categorization/blob/main/README-pt-BR.md), porém também
+está disponível em [Inglês](https://github.com/lucsalm/commands-categorization/blob/main/README.md).
 
 ## Visão Geral
 
 Este projeto é base do meu
-[Trabalho de Conclusão de Curso](https://github.com/lucsalm/commands-categirization/blob/main/TCC.pdf)
+[Trabalho de Conclusão de Curso](https://github.com/lucsalm/commands-categorization/blob/main/TCC.pdf)
 da minha graduação [Bacharelado em Matemática Aplicada e Computacional](https://www.ime.usp.br/bmac/)
 no [Instituto de Matemática e Estatística](https://www.ime.usp.br) da [USP](https://www5.usp.br).
 O trabalho é focado no estudo da arquitetura Transformer e sua aplicação na categorização de comandos de fala
@@ -30,10 +30,10 @@ Por conta da natureza do problema estudado, os dados seguem o padrão de pares d
 
 - ### Áudios
   Os áudios seguem a representação unidimensional em formato de onda extraídos de arquivos WAV:
-  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/wav_all.png)
+  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/wav_all.png)
   Porém na fase de pré-processamento eles são convertidos para o formato bidimensional de espectrograma STFT (Short-time
   Fourier transform):
-  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/spec_all.png)
+  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/spec_all.png)
 
 - ### Rótulos
   São a representação numérica para os comandos, os indicies definidos são os seguintes:
@@ -100,19 +100,19 @@ Os pares são divididos com as mesmas proporções para cada comando em três co
 - ### Comportamento
   - **Função de Perda** (Treinamento) 
   
-      ![Perda](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/train_loss.png)
+      ![Perda](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/train_loss.png)
 
   - **Função de Precisão** (Validação)
   
-      ![Precisao](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/validation_accuracy.png)
+      ![Precisao](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/validation_accuracy.png)
   
   - **Matriz de confusão** (Teste)
   
-      ![Confusao](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/confusion-teste.png)
+      ![Confusao](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/confusion-teste.png)
 
 ## Captura de Tela de Exemplo
 
-![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/screenshot.png)
 
 ## Como usar?
 1. Certifique-se de que o Docker esteja instalado em sua máquina.
