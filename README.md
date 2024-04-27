@@ -50,7 +50,7 @@ The pairs are divided with the same proportions for each command into three sets
 
 - ### Architecture
   The architecture of the model used was based on the Transformer architecture, especially on the concept of the Encoder and the use of the Self-Attention mechanism. The representation in flowchart form can be visualized by the drawing:
-  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/model-diagram.jpg)
+  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/model.jpg)
 
   Each layer present in the architecture has a specific role for the model. These are properly documented in the work. To delve into the details, refer to section **(3.1) Camadas**.
 

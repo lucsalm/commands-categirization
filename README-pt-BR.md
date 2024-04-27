@@ -62,7 +62,7 @@ Os pares são divididos com as mesmas proporções para cada comando em três co
 - ### Arquitetura
   A arquitetura do modelo utilizada foi baseada na arquitetura Transformer, em especial no conceito do Encoder
   e no uso do mecanismo de Self-Attention, a representação em forma de fluxograma pode ser visualizada pelo desenho:
-  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/model-diagram.jpg)
+  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categirization/main/app/files/documentation/model.jpg)
 
   Cada camada presente na arquitetura tem um papel específico para o modelo, esses estão devidamente documentados no
   trabalho, para aprofundar os
