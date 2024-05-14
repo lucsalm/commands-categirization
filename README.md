@@ -1,13 +1,21 @@
 # Commands Categorization
 
-This document is available in [English](https://github.com/lucsalm/commands-categorization/blob/main/README.md), but it's also available in [Portuguese](https://github.com/lucsalm/commands-categorization/blob/main/README-pt-BR.md).
+Este documento está disponível em [Português](README-en), porém também
+está disponível em [Inglês](README-en.md).
 
-## Overview
+## Visão Geral
 
-This project is the foundation of my [Bachelor's Thesis](https://github.com/lucsalm/commands-categorization/blob/main/TCC.pdf) for my undergraduate degree in [Applied and Computational Mathematics](https://www.ime.usp.br/bmac/) at the [Instituto de Matemática e Estatística](https://www.ime.usp.br) of [USP](https://www5.usp.br).
-The work focuses on studying the Transformer architecture and its application in speech command categorization, which involves identifying and classifying different types of instructions or requests issued through human speech. The repository contains the implementations used, from data preprocessing, model creation, to training definitions, and generation of graphs for result evaluation.
+Este projeto é base do meu
+[Trabalho de Conclusão de Curso](TCC.pdf)
+da minha graduação [Bacharelado em Matemática Aplicada e Computacional](https://www.ime.usp.br/bmac/)
+no [Instituto de Matemática e Estatística](https://www.ime.usp.br) da [USP](https://www5.usp.br).
+O trabalho é focado no estudo da arquitetura Transformer e sua aplicação na categorização de comandos de fala
+que por sua vez é um processo que envolve identificar e classificar os diferentes tipos de instruções ou solicitações
+emitidas por meio da fala humana. O repositório contém as implementações utilizadas,
+desde o pré-processamento dos dados, criação do modelo até as definições de treinamento e
+geração de gráficos para avaliação de resultados.
 
-## Technologies
+## Tecnologias
 
 ![Python](https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white)
 ![Tensorflow](https://img.shields.io/badge/TensorFlow-FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
@@ -16,107 +24,118 @@ The work focuses on studying the Transformer architecture and its application in
 ![Flask](https://img.shields.io/badge/Flask-000000.svg?style=for-the-badge&logo=Flask&logoColor=white)
 ![Latex](https://img.shields.io/badge/LaTeX-008080.svg?style=for-the-badge&logo=LaTeX&logoColor=white)
 
-## Data
+## Dados
 
-Due to the nature of the problem studied, the data follows the pattern of pairs:
+Por conta da natureza do problema estudado, os dados seguem o padrão de pares de:
 
-- ### Audios
-  Audios follow the one-dimensional representation in WAV file format:
-  ![WAV](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/wav_all.png)
-  However, in the preprocessing phase, they are converted to the two-dimensional format of Short-time Fourier transform (STFT) spectrogram:
-  ![STFT](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/spec_all.png)
+- ### Áudios
+  Os áudios seguem a representação unidimensional em formato de onda extraídos de arquivos WAV:
+  ![WAV](document/wav_all.png)
+  Porém na fase de pré-processamento eles são convertidos para o formato bidimensional de espectrograma STFT (Short-time
+  Fourier transform):
+  ![STFT](document/spec_all.png)
 
-- ### Labels
-  They are the numerical representation for the commands, the defined indices are as follows:
+- ### Rótulos
+  São a representação numérica para os comandos, os indicies definidos são os seguintes:
 
-  | **Index** | 1    | 2  | 3    | 4  | 5     | 6    | 7  | 8   |
+  | **Indice** | 1    | 2  | 3    | 4  | 5     | 6    | 7  | 8   |
   |------------|------|----|------|----|-------|------|----|-----|
-  | **Text**  | Down | Go | Left | No | Right | Stop | Up | Yes |
+  | **Texto**  | Down | Go | Left | No | Right | Stop | Up | Yes |
 
-  From the defined indices, commands are identified by a vector whose values sum to one. When representing a command, its index will be the highest value in the vector. For example, a representation of the command *"No"* can be done by:
+  A partir dos indices definidos, os comandos são identificados por um vetor cuja os valores somam um, ao representar
+  um comando, seu indice será o maior valor do vetor, por exemplo, uma representação do comando *"No"* pode ser feita
+  por:
 
-  | **Index** | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+  | **Indice** | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
   |------------|---|---|---|---|---|---|---|---|
-  | **Vector**  | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+  | **Vetor**  | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
 
-The pairs are divided with the same proportions for each command into three sets:
+Os pares são divididos com as mesmas proporções para cada comando em três conjuntos:
 
-- ### Sets
-  | **Name**    | Training | Validation  | Test     |
+- ### Conjuntos
+  | **Nome**    | Treinamento | Validação  | Teste     |
   |-------------|-------------|------------|-----------|
-  | **Size** | 6400 (80%)  | 800 (10%)  | 800 (10%) |
+  | **Tamanho** | 6400 (80%)  | 800 (10%)  | 800 (10%) |
 
-## Model
+## Modelo
 
-- ### Architecture
-  The architecture of the model used was based on the Transformer architecture, especially on the concept of the Encoder and the use of the Self-Attention mechanism. The representation in flowchart form can be visualized by the drawing:
-  ![Model](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/model.png)
+- ### Arquitetura
+  A arquitetura do modelo utilizada foi baseada na arquitetura Transformer, em especial no conceito do Encoder
+  e no uso do mecanismo de Self-Attention, a representação em forma de fluxograma pode ser visualizada pelo desenho:
+  ![Model](document/model.png)
 
-  Each layer present in the architecture has a specific role for the model. These are properly documented in the work. To delve into the details, refer to section **(3.1) Camadas**.
+  Cada camada presente na arquitetura tem um papel específico para o modelo, esses estão devidamente documentados no
+  trabalho, para aprofundar os
+  detalhes consulte a sessão **(3.1) Camadas**.
 
-## Training
+## Treinamento
 
-- ### Definitions
+- ### Definições
 
-    - **Loss Function**: Categorical Crossentropy
-    - **Accuracy Function**: Categorical Accuracy
-    - **Optimizer**: Adaptative Moment Estimation
-    - **Hyperparameters**:
-        - Epochs: 400
+    - **Função de Perda**: Categorical Crossentropy
+    - **Função de Precisão**: Categorical Accuracy
+    - **Otimizador**: Adaptative Moment Estimation
+    - **Hiperparêmetros**:
+        - Epócas: 400
         - Batch size: 32
         - Heads: 2
         - Dropout rate: 0.1
 
-  Each chosen definition has a specific function. These are properly documented in the work. To delve into the details, refer to section **(3.2) Treinamento**.
+  Cada definição escolhida tem um funcionamento específico, esses estão devidamente documentados no trabalho, para
+  aprofundar os detalhes
+  consulte a sessão **(3.2) Treinamento**.
 
-- ### Choice
-  The criterion for choosing the weights that define the model is made from the epoch where the highest accuracy for the validation set is found.
 
-## Results
+- ### Escolha
+  O critério de escolha dos pesos que definem o modelo é feito a partir da época onde for encontrada a maior precisão
+  para o conjunto de validação.
 
-- ### Accuracy
-  | Set     | Training | Validation | Test  |
+## Resultados
+
+- ### Precisão
+  | Conjunto     | Treinamento | Validação | Teste  |
   |--------------|-------------|-----------|--------|
-  | **Accuracy** | 99.08%      | 85.25%    | 85.87% | 
+  | **Precisão** | 99.08%      | 85.25%    | 85.87% | 
 
-- ### Behavior
-  - **Loss Function** (Training) 
+- ### Comportamento
+  - **Função de Perda** (Treinamento) 
   
-      ![Loss](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/train_loss.png)
+      ![Perda](document/train_loss.png)
 
-  - **Accuracy Function** (Validation)
+  - **Função de Precisão** (Validação)
   
-      ![Accuracy](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/validation_accuracy.png)
+      ![Precisao](document/validation_accuracy.png)
   
-  - **Confusion Matrix** (Test)
+  - **Matriz de confusão** (Teste)
   
-      ![Confusion](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/confusion-teste.png)
+      ![Confusao](document/confusion-teste.png)
 
-## Example Screenshot
+## Captura de Tela de Exemplo
 
-![Screenshot](https://raw.githubusercontent.com/lucsalm/commands-categorization/main/app/files/documentation/screenshot.png)
+![Screenshot](document/screenshot.png)
 
-## How to Use?
-1. Ensure Docker is installed on your machine.
-2. Clone this repository to your local environment.
-3. Navigate to the project directory.
-4. In the terminal, run the following command to build and start the Docker container:
-    - On Linux, run:
+## Como usar?
+1. Certifique-se de que o Docker esteja instalado em sua máquina.
+2. Clone este repositório para o seu ambiente local.
+3. Navegue até o diretório do projeto.
+4. No terminal, execute o seguinte comando para construir e iniciar o contêiner Docker:
+    - No Linux, execute:
         ```bash
         docker compose up
         ```
 
-    - On Windows, run:
+    - No Windows, execute:
         ```bash
         docker-compose up
         ```
 
-5. After building the container and starting the application, access `http://localhost:5000` in your web browser to explore.
+5. Após a construção do contêiner e a inicialização da aplicação, acesse `http://localhost:5000` em seu navegador da web para explorar.
 
-**Note:** 
-- Ensure that port `5000` is not being used by another application on your system to avoid conflicts. If necessary, you can modify the port mapping in the `docker-compose.yml` file.
+**Observação:** 
+- Certifique-se de que a porta `5000` não está sendo utilizada por outra aplicação em seu sistema para evitar conflitos. Se necessário, você pode modificar o mapeamento de porta no arquivo `docker-compose.yml`.
 
-## References
+
+## Referências
 - Shafran, I., Riley, M., & Mohri, M. (2003). Voice signatures. In: 2003 IEEE workshop on automatic speech recognition and understanding (IEEE Cat. No. 03EX721), pp. 31–36.
 
 
