@@ -129,10 +129,10 @@ Os pares são divididos com as mesmas proporções para cada comando em três co
         docker-compose up
         ```
 
-5. Após a construção do contêiner e a inicialização da aplicação, acesse `http://localhost:5000` em seu navegador da web para explorar.
+5. Após a construção do contêiner e a inicialização da aplicação, acesse [http://localhost:5000](http://localhost:5000) em seu navegador da web para explorar.
 
 **Observação:** 
-- Certifique-se de que a porta `5000` não está sendo utilizada por outra aplicação em seu sistema para evitar conflitos. Se necessário, você pode modificar o mapeamento de porta no arquivo `docker-compose.yml`.
+- Certifique-se de que a porta `5000` não está sendo utilizada por outra aplicação em seu sistema para evitar conflitos. Se necessário, você pode modificar o mapeamento de porta no arquivo [docker-compose.yaml](docker-compose.yaml).
 
 
 ## Referências

@@ -111,10 +111,10 @@ The pairs are divided with the same proportions for each command into three sets
         docker-compose up
         ```
 
-5. After building the container and starting the application, access `http://localhost:5000` in your web browser to explore.
+5. After building the container and starting the application, access [http://localhost:5000](http://localhost:5000) in your web browser to explore.
 
 **Note:** 
-- Ensure that port `5000` is not being used by another application on your system to avoid conflicts. If necessary, you can modify the port mapping in the `docker-compose.yml` file.
+- Ensure that port `5000` is not being used by another application on your system to avoid conflicts. If necessary, you can modify the port mapping in the [docker-compose.yaml](docker-compose.yaml) file.
 
 ## References
 - Shafran, I., Riley, M., & Mohri, M. (2003). Voice signatures. In: 2003 IEEE workshop on automatic speech recognition and understanding (IEEE Cat. No. 03EX721), pp. 31–36.
